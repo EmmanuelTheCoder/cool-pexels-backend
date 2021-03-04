@@ -7,7 +7,7 @@ const videoServer = express.Router();
 
 videoServer.get("/", (req, res, next)=>{
 
-    client.videos.popular({per_page: 80, page: 1 }).then( video =>{
+    client.videos.popular({per_page: 5, page: 1 }).then( video =>{
         return res.send(video);
     })
 })

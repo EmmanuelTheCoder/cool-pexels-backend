@@ -10,14 +10,21 @@ router.use(Express.json());
 router.use(Express.urlencoded({extended: false}))
 
 
-router.post("/photoquery", (req, res, next) =>{
+router.post("/mediaquery", (req, res, next) =>{
     
     console.log("from the client", req.body);
     console.log("just getting the number", req.body.number)
     
-    client.photos.curated({per_page: 80, page: req.body.number}).then(photos =>{
-        res.send(photos);
-    })
+    if(req.body.name === "photo"){
+
+        client.photos.curated({per_page: 80, page: req.body.number}).then(photo =>{
+            res.send(photo);
+        })
+    }else{
+        client.videos.popular({per_page: 10, page: req.body.number}).then(video =>{
+            res.send(video);
+        })
+    }
 
     //res.send("there is nothing to find here");
 })

@@ -21,7 +21,7 @@ router.post("/mediaquery", (req, res, next) =>{
             res.send(photo);
         })
     }else{
-        client.videos.popular({per_page: 10, page: req.body.number}).then(video =>{
+        client.videos.popular({per_page: 80, page: req.body.number}).then(video =>{
             res.send(video);
         })
     }
